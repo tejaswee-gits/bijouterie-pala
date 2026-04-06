@@ -3,6 +3,8 @@
 import JewelAssembly from "@/components/JewelAssembly";
 import BookingModal from "@/components/BookingModal";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import PhilosophySection from "@/components/PhilosophySection";
+import ServiceSection from "@/components/ServiceSection";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -18,238 +20,38 @@ function MainContent() {
       <JewelAssembly onOpenBooking={() => setIsBookingOpen(true)} />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
 
-      {/* Hero Philosophy Section */}
-      <section className="min-h-screen flex items-center justify-center bg-obsidian text-white relative z-10 px-4 py-20">
-        <div className="max-w-5xl text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-gold-light tracking-[0.3em] uppercase text-xs mb-8"
-          >
-            {t.philosophy.label}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-7xl font-serif mb-8 leading-tight"
-          >
-            {t.philosophy.title_line1}<br />
-            <span className="italic text-gold-light">{t.philosophy.title_line2}</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-gray-400 font-sans text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
-          >
-            {t.philosophy.desc}
-          </motion.p>
-        </div>
-      </section>
+      <PhilosophySection />
 
-      {/* Services Section - Création Sur-Mesure */}
-      <section className="min-h-screen flex items-center bg-obsidian text-white relative z-10 px-4 py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-gold-light text-8xl font-serif opacity-20 mb-4">💎</div>
-            <h3 className="text-4xl md:text-5xl font-serif mb-6">
-              {t.services.creation.title}
-            </h3>
-            <p className="text-gray-400 font-sans text-lg leading-relaxed mb-8">
-              {t.services.creation.desc}
-            </p>
-            <div className="h-px w-24 bg-gradient-to-r from-gold to-transparent" />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-square relative overflow-hidden rounded-sm border border-white/5 group">
-              <Image
-                src="/images/ring.png"
-                alt="Création sur mesure bague diamant"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent flex items-end justify-center pb-8">
-                <div className="text-center">
-                  <p className="text-gold-light font-serif text-2xl italic mb-2">{t.services.creation.img_quote}</p>
-                  <p className="text-gray-300 text-xs uppercase tracking-widest">{t.services.creation.img_sub}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceSection
+        title={t.services.creation.title}
+        description={t.services.creation.desc}
+        imageSrc="/images/ring.png"
+        imageAlt="Création sur mesure bague diamant"
+        imageQuote={t.services.creation.img_quote}
+        imageSub={t.services.creation.img_sub}
+        emoji="💎"
+      />
 
-      {/* Services Section - Transformation */}
-      <section className="min-h-screen flex items-center bg-obsidian text-white relative z-10 px-4 py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="order-2 lg:order-1 relative"
-          >
-            <div className="aspect-square relative overflow-hidden rounded-sm border border-white/5 group">
-              <Image
-                src="/images/necklace.png"
-                alt="Transformation de bijoux collier saphir"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent flex items-end justify-center pb-8">
-                <div className="text-center">
-                  <p className="text-gold-light font-serif text-2xl italic mb-2">{t.services.transformation.img_quote}</p>
-                  <p className="text-gray-300 text-xs uppercase tracking-widest">{t.services.transformation.img_sub}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="order-1 lg:order-2"
-          >
-            <div className="text-gold-light text-8xl font-serif opacity-20 mb-4">✨</div>
-            <h3 className="text-4xl md:text-5xl font-serif mb-6">
-              {t.services.transformation.title}
-            </h3>
-            <p className="text-gray-400 font-sans text-lg leading-relaxed mb-8">
-              {t.services.transformation.desc}
-            </p>
-            <div className="h-px w-24 bg-gradient-to-r from-gold to-transparent" />
-          </motion.div>
-        </div>
-      </section>
+      <ServiceSection
+        title={t.services.transformation.title}
+        description={t.services.transformation.desc}
+        imageSrc="/images/necklace.png"
+        imageAlt="Transformation de bijoux collier saphir"
+        imageQuote={t.services.transformation.img_quote}
+        imageSub={t.services.transformation.img_sub}
+        emoji="✨"
+        reverse
+      />
 
-      {/* Services Section - Réparation */}
-      <section className="min-h-screen flex items-center bg-obsidian text-white relative z-10 px-4 py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-gold-light text-8xl font-serif opacity-20 mb-4">🔧</div>
-            <h3 className="text-4xl md:text-5xl font-serif mb-6">
-              {t.services.repair.title}
-            </h3>
-            <p className="text-gray-400 font-sans text-lg leading-relaxed mb-8">
-              {t.services.repair.desc}
-            </p>
-            <div className="h-px w-24 bg-gradient-to-r from-gold to-transparent" />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-square relative overflow-hidden rounded-sm border border-white/5 group">
-              <Image
-                src="/images/craftsman.png"
-                alt="Artisan joaillier restauration"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent flex items-end justify-center pb-8">
-                <div className="text-center">
-                  <p className="text-gold-light font-serif text-2xl italic mb-2">{t.services.repair.img_quote}</p>
-                  <p className="text-gray-300 text-xs uppercase tracking-widest">{t.services.repair.img_sub}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Heritage Section */}
-      <section className="min-h-screen flex items-center justify-center bg-obsidian text-white relative z-10 px-4 py-20">
-        <div className="max-w-5xl text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-gold-light tracking-[0.3em] uppercase text-xs mb-8"
-          >
-            {t.heritage.label}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-serif mb-12 italic"
-          >
-            {t.heritage.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-gray-400 font-sans text-lg mb-20 max-w-3xl mx-auto leading-relaxed"
-          >
-            {t.heritage.desc}
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="p-8 border border-white/5 rounded-sm bg-gradient-to-b from-white/[0.02] to-transparent"
-            >
-              <h3 className="text-gold font-serif text-3xl mb-4">{t.heritage.card1_title}</h3>
-              <p className="text-gray-500 uppercase tracking-widest text-xs mb-4">{t.heritage.card1_sub}</p>
-              <p className="text-gray-400 text-sm leading-relaxed">{t.heritage.card1_desc}</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="p-8 border border-white/5 rounded-sm bg-gradient-to-b from-white/[0.02] to-transparent"
-            >
-              <h3 className="text-gold font-serif text-3xl mb-4">{t.heritage.card2_title}</h3>
-              <p className="text-gray-500 uppercase tracking-widest text-xs mb-4">{t.heritage.card2_sub}</p>
-              <p className="text-gray-400 text-sm leading-relaxed">{t.heritage.card2_desc}</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="p-8 border border-white/5 rounded-sm bg-gradient-to-b from-white/[0.02] to-transparent"
-            >
-              <h3 className="text-gold font-serif text-3xl mb-4">{t.heritage.card3_title}</h3>
-              <p className="text-gray-500 uppercase tracking-widest text-xs mb-4">{t.heritage.card3_sub}</p>
-              <p className="text-gray-400 text-sm leading-relaxed">{t.heritage.card3_desc}</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <ServiceSection
+        title={t.services.repair.title}
+        description={t.services.repair.desc}
+        imageSrc="/images/craftsman.png"
+        imageAlt="Artisan joaillier restauration"
+        imageQuote={t.services.repair.img_quote}
+        imageSub={t.services.repair.img_sub}
+        emoji="🔧"
+      />
 
       {/* Specialties Section */}
       <section className="py-20 bg-obsidian text-white relative z-10 px-4">
